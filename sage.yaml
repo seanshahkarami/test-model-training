@@ -1,0 +1,13 @@
+name: "test-model-training"
+version: "0.1.0"
+description: "Test Model Training"
+keywords: ""
+authors: "Sean Shahkarami"
+collaborators: ""
+funding: ""
+license: ""
+homepage: ""
+source:
+  architectures:
+    - "linux/amd64"
+    - "linux/arm64"
