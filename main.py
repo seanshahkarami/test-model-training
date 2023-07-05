@@ -11,7 +11,7 @@ def test_model_epoch(modelfn):
     else:
         device = "cpu"
 
-    model = modelfn(pretrained=True).to(device)
+    model = modelfn().to(device)
     model.train()
 
     optimizer = SGD(model.parameters(), lr=1e-3)
