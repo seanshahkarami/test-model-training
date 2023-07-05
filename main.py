@@ -15,7 +15,6 @@ def test_model_epoch(modelfn):
     model.train()
 
     optimizer = SGD(model.parameters(), lr=1e-3)
-    optimizer.zero_grad()
 
     lossfunc = CrossEntropyLoss()
 
@@ -24,8 +23,11 @@ def test_model_epoch(modelfn):
 
     start = time.time()
 
+    optimizer.zero_grad()
+
     loss = lossfunc(model(input), target)
     loss.backward()
+    optimizer.step()
 
     duration = time.time() - start
     print(modelfn.__name__, device, duration, loss.item())
