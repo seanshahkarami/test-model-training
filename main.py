@@ -25,19 +25,21 @@ def test_model_epoch(modelfn):
 
     lossfunc = CrossEntropyLoss()
 
-    input = torch.randn((batch_size, 3, 512, 512), device=device)
-    target = torch.randint(0, 999, (batch_size,), device=device)
+    # repeat test in case some cache or setup is required
+    for i in range(50):
+        input = torch.randn((batch_size, 3, 512, 512), device=device)
+        target = torch.randint(0, 999, (batch_size,), device=device)
 
-    start = time.time()
+        start = time.time()
 
-    optimizer.zero_grad()
+        optimizer.zero_grad()
 
-    loss = lossfunc(model(input), target)
-    loss.backward()
-    optimizer.step()
+        loss = lossfunc(model(input), target)
+        loss.backward()
+        optimizer.step()
 
-    duration = time.time() - start
-    print("result", modelfn.__name__, device, duration, flush=True)
+        duration = time.time() - start
+        print("result", modelfn.__name__, device, i, duration, flush=True)
 
 
 def main():
