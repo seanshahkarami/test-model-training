@@ -14,4 +14,7 @@ df = pd.DataFrame(
     for r in re.findall("result (\S+) cuda (\d+) (\S+)", data)
 )
 
-print(df[df.item > 0].groupby("model").duration.describe().sort_values("mean"))
+# drop first item to ignore any warm up behavior
+df = df[df.item > 0]
+
+print(df.groupby("model").duration.describe().sort_values("mean"))
