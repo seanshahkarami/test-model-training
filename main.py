@@ -11,6 +11,13 @@ def test_model_epoch(modelfn):
     else:
         device = "cpu"
 
+    batch_size = 1
+
+    print(
+        f"testing {modelfn.__name__} on device {device} with batch size {batch_size}",
+        flush=True,
+    )
+
     model = modelfn().to(device)
     model.train()
 
@@ -18,8 +25,8 @@ def test_model_epoch(modelfn):
 
     lossfunc = CrossEntropyLoss()
 
-    input = torch.randn((4, 3, 512, 512), device=device)
-    target = torch.randint(0, 999, (len(input),), device=device)
+    input = torch.randn((batch_size, 3, 512, 512), device=device)
+    target = torch.randint(0, 999, (batch_size,), device=device)
 
     start = time.time()
 
