@@ -30,7 +30,7 @@ def test_model_epoch(modelfn):
     optimizer.step()
 
     duration = time.time() - start
-    print(modelfn.__name__, device, duration, loss.item())
+    print("time", modelfn.__name__, device, duration, loss.item(), flush=True)
 
 
 def main():
